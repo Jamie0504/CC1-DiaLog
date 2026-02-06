@@ -1,4 +1,4 @@
-# 🍽️ SteadyPlate
+# 💧 DiaLog
 
 **NTU CC0005 Healthy Living & Wellbeing — Group 1 Project**
 
