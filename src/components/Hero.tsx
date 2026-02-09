@@ -28,10 +28,10 @@ export default function Hero() {
           <a href="#meal-prep" className="btn-primary bg-white text-brand-700 hover:bg-brand-50 shadow-lg">
             🍳 Meal Prep
           </a>
-          <a href="#timetable" className="btn-secondary border-white/30 text-white hover:bg-white/10 hover:border-white/50">
+          <a href="#timetable" className="btn-primary bg-white text-brand-700 hover:bg-brand-50 shadow-lg">
             📅 Timetable
           </a>
-          <a href="#habit-log" className="btn-secondary border-white/30 text-white hover:bg-white/10 hover:border-white/50">
+          <a href="#habit-log" className="btn-primary bg-white text-brand-700 hover:bg-brand-50 shadow-lg">
             📸 Habit Log
           </a>
         </div>
