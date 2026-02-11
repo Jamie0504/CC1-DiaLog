@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
-import { HabitLogEntry } from '../types';
+import { HabitLogEntry, NutritionData } from '../types';
 import { generateId, resizeImage } from '../utils/localStorage';
+import { analyzeFood } from '../utils/nutritionApi';
+import NutritionDisplay from './NutritionDisplay';
 
 const moods = ['😊', '😌', '😐', '😔', '😤', '🥳'];
 const energyLevels = ['⚡', '💪', '🔋', '😴', '🌟'];
@@ -17,12 +19,17 @@ export default function HabitLogForm({ onAdd, onCancel }: Props) {
   const [energy, setEnergy] = useState('');
   const [imageData, setImageData] = useState<string | undefined>();
   const [imageLoading, setImageLoading] = useState(false);
+  const [nutrition, setNutrition] = useState<NutritionData | null>(null);
+  const [analyzing, setAnalyzing] = useState(false);
+  const [analysisError, setAnalysisError] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setImageLoading(true);
+    setNutrition(null);
+    setAnalysisError(null);
     try {
       const resized = await resizeImage(file, 400);
       setImageData(resized);
@@ -30,6 +37,20 @@ export default function HabitLogForm({ onAdd, onCancel }: Props) {
       alert('Could not process this image. Please try another one.');
     } finally {
       setImageLoading(false);
+    }
+  };
+
+  const handleAnalyze = async () => {
+    if (!imageData || imageData === 'placeholder') return;
+    setAnalyzing(true);
+    setAnalysisError(null);
+    try {
+      const result = await analyzeFood(imageData);
+      setNutrition(result);
+    } catch (err) {
+      setAnalysisError(err instanceof Error ? err.message : 'Analysis failed. Please try again.');
+    } finally {
+      setAnalyzing(false);
     }
   };
 
@@ -48,6 +69,7 @@ export default function HabitLogForm({ onAdd, onCancel }: Props) {
       mood,
       energy,
       createdAt: new Date().toISOString(),
+      ...(nutrition ? { nutrition } : {}),
     };
     onAdd(entry);
   };
@@ -101,6 +123,8 @@ export default function HabitLogForm({ onAdd, onCancel }: Props) {
               type="button"
               onClick={() => {
                 setImageData(undefined);
+                setNutrition(null);
+                setAnalysisError(null);
                 if (fileRef.current) fileRef.current.value = '';
               }}
               className="text-sm text-red-500 hover:text-red-700 font-medium"
@@ -118,6 +142,37 @@ export default function HabitLogForm({ onAdd, onCancel }: Props) {
           </div>
         )}
       </div>
+
+      {/* Nutrition Analysis */}
+      {imageData && imageData !== 'placeholder' && (
+        <div>
+          {analyzing && (
+            <p className="text-sm text-brand-600 animate-pulse">Analyzing your meal...</p>
+          )}
+          {analysisError && (
+            <div className="flex items-center gap-2">
+              <p className="text-sm text-red-500">{analysisError}</p>
+              <button
+                type="button"
+                onClick={handleAnalyze}
+                className="text-sm text-brand-600 hover:text-brand-800 font-medium"
+              >
+                Retry
+              </button>
+            </div>
+          )}
+          {nutrition && <NutritionDisplay nutrition={nutrition} />}
+          {!analyzing && !analysisError && !nutrition && (
+            <button
+              type="button"
+              onClick={handleAnalyze}
+              className="btn-secondary text-sm py-2"
+            >
+              🔬 Analyze Nutrition
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Note */}
       <div>

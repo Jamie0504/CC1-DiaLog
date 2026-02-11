@@ -1,5 +1,6 @@
 import { HabitLogEntry } from '../types';
 import { formatDate } from '../utils/localStorage';
+import NutritionDisplay from './NutritionDisplay';
 
 interface Props {
   entries: HabitLogEntry[];
@@ -42,6 +43,11 @@ export default function HabitLogGallery({ entries, onDelete }: Props) {
             <div className="w-full h-40 bg-slate-50 rounded-xl mb-3 flex items-center justify-center text-5xl">
               🍽️
             </div>
+          )}
+
+          {/* Nutrition */}
+          {entry.nutrition?.isFood && (
+            <NutritionDisplay nutrition={entry.nutrition} compact />
           )}
 
           {/* Meta */}

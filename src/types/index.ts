@@ -10,6 +10,21 @@ export interface MealIdea {
   swapSuggestions: string[];
 }
 
+export interface NutritionData {
+  isFood: boolean;
+  foodName: string;
+  calories: number | null;
+  carbohydrates: number | null;
+  sugar: number | null;
+  protein: number | null;
+  fat: number | null;
+  fibre: number | null;
+  sodium: number | null;
+  glycemicIndex: string | null;
+  carbCountingNote: string | null;
+  disclaimer: string;
+}
+
 export interface HabitLogEntry {
   id: string;
   date: string;
@@ -18,6 +33,7 @@ export interface HabitLogEntry {
   mood: string;
   energy: string;
   createdAt: string;
+  nutrition?: NutritionData;
 }
 
 export interface WeeklyReflection {
