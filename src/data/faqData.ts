@@ -9,7 +9,7 @@ export const faqItems: FAQItem[] = [
   {
     question: 'Does this replace glucose monitoring or insulin management?',
     answer:
-      'Absolutely not. DiaLog complements your existing healthcare by supporting daily wellbeing habits like meal consistency and self-reflection. It does not track blood sugar, calculate insulin doses, or replace any clinical tools. However we do have a timetable template you can edit your schedule in there so that you will know when to take your insulin.',
+      'Absolutely not. DiaLog complements your existing healthcare by supporting daily wellbeing habits like meal consistency and self-reflection. It does not track blood sugar, calculate insulin doses, or replace any clinical tools.',
   },
   {
     question: 'Who is this designed for?',
