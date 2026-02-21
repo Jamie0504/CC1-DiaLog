@@ -2,12 +2,13 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDPLOK_FXai4mBLZmqFIMTnOIlrsb1kGOk",
+  apiKey: "AIzaSyCqBj0Grn-zud-wJOWffViu_17d0Dcb7zk",
   authDomain: "dialog-cc1.firebaseapp.com",
   projectId: "dialog-cc1",
   storageBucket: "dialog-cc1.firebasestorage.app",
-  messagingSenderId: "648498337257",
-  appId: "1:648498337257:web:e36b4a573bd92c5cd30e5e",
+  messagingSenderId: "152628459233",
+  appId: "1:152628459233:web:dc3n9d04fbe99b7be7a9a0",
+  measurementId: "G-MD2DCNT8LL",
 };
 
 const app = initializeApp(firebaseConfig);
