@@ -14,6 +14,26 @@ export default function AuthModal({ onClose }: Props) {
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
 
+  const friendlyError = (err: unknown): string => {
+    const raw = err instanceof Error ? err.message : 'Something went wrong';
+    const errorMap: Record<string, string> = {
+      'auth/unauthorized-domain': 'This domain is not authorized in Firebase. Add it in Firebase Console → Authentication → Settings → Authorized domains.',
+      'auth/popup-closed-by-user': 'Sign-in popup was closed. Please try again.',
+      'auth/popup-blocked': 'Popup was blocked by your browser. Please allow popups for this site.',
+      'auth/operation-not-allowed': 'Google sign-in is not enabled. Enable it in Firebase Console → Authentication → Sign-in method.',
+      'auth/email-already-in-use': 'An account with this email already exists. Try signing in instead.',
+      'auth/invalid-email': 'Please enter a valid email address.',
+      'auth/wrong-password': 'Incorrect password. Please try again.',
+      'auth/invalid-credential': 'Incorrect email or password. Please try again.',
+      'auth/user-not-found': 'No account found with this email. Try signing up.',
+      'auth/weak-password': 'Password must be at least 6 characters.',
+    };
+    for (const [code, msg] of Object.entries(errorMap)) {
+      if (raw.includes(code)) return msg;
+    }
+    return raw.replace('Firebase: ', '');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -26,8 +46,7 @@ export default function AuthModal({ onClose }: Props) {
       }
       onClose();
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Something went wrong';
-      setError(message.replace('Firebase: ', '').replace(/\(auth\/.*\)/, '').trim());
+      setError(friendlyError(err));
     } finally {
       setBusy(false);
     }
@@ -40,8 +59,7 @@ export default function AuthModal({ onClose }: Props) {
       await signInWithGoogle();
       onClose();
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Something went wrong';
-      setError(message.replace('Firebase: ', '').replace(/\(auth\/.*\)/, '').trim());
+      setError(friendlyError(err));
     } finally {
       setBusy(false);
     }
