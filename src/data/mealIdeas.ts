@@ -9,6 +9,7 @@ export const mealIdeas: MealIdea[] = [
       'A no-cook breakfast you can prep the night before. Grab it from the fridge and go — perfect for unpredictable mornings.',
     prepTime: '5 min (+ overnight)',
     tags: ['Breakfast', 'No-Cook', 'Meal Prep'],
+    allergens: ['Dairy', 'Gluten'],
     ingredients: [
       '½ cup rolled oats',
       '½ cup milk (any type)',
@@ -27,6 +28,7 @@ export const mealIdeas: MealIdea[] = [
       '🔄 Swap berries for sliced banana or mango',
       '🥜 Add a spoonful of peanut butter for extra protein',
       '💧 Pair with a glass of water to start hydrated',
+      '🥛 Use oat milk & coconut yogurt to make it dairy-free',
     ],
   },
   {
@@ -37,6 +39,7 @@ export const mealIdeas: MealIdea[] = [
       'A balanced one-pan meal with lean protein and colourful vegetables. Ready in under 20 minutes.',
     prepTime: '15–20 min',
     tags: ['Lunch', 'Dinner', 'High Protein'],
+    allergens: ['Soy', 'Gluten'],
     ingredients: [
       '1 chicken breast, sliced thin',
       '1 cup mixed vegetables (bell pepper, broccoli, snap peas)',
@@ -56,6 +59,7 @@ export const mealIdeas: MealIdea[] = [
       '🔄 Swap chicken for tofu or prawns',
       '🥬 Add leafy greens like bok choy or spinach',
       '🌶️ Toss in chilli flakes if you like it spicy',
+      '🫘 Use coconut aminos instead of soy sauce to make it soy-free',
     ],
   },
   {
@@ -66,6 +70,7 @@ export const mealIdeas: MealIdea[] = [
       'A portable, no-cook wrap packed with fibre and flavour. Great for eating between tasks or on the go.',
     prepTime: '10 min',
     tags: ['Lunch', 'Portable', 'Vegetarian'],
+    allergens: ['Dairy', 'Gluten'],
     ingredients: [
       '1 whole-wheat tortilla',
       '3 tbsp hummus',
@@ -82,9 +87,10 @@ export const mealIdeas: MealIdea[] = [
       'Roll tightly, cut in half, and wrap in foil for later.',
     ],
     swapSuggestions: [
-      '🔄 Swap feta for avocado slices',
+      '🔄 Swap feta for avocado slices (dairy-free)',
       '🍗 Add grilled chicken strips for more protein',
       '💧 Have a cup of herbal tea alongside',
+      '🥬 Use a large lettuce leaf instead of tortilla (gluten-free)',
     ],
   },
   {
@@ -95,6 +101,7 @@ export const mealIdeas: MealIdea[] = [
       'A nutrient-rich dinner bowl with omega-3s and plant-based protein. Batch-cook quinoa on weekends for easy assembly.',
     prepTime: '25 min',
     tags: ['Dinner', 'Omega-3', 'Batch Prep'],
+    allergens: ['Fish'],
     ingredients: [
       '1 salmon fillet',
       '½ cup cooked quinoa',
@@ -111,7 +118,7 @@ export const mealIdeas: MealIdea[] = [
       'Finish with a squeeze of lemon and fresh herbs.',
     ],
     swapSuggestions: [
-      '🔄 Swap salmon for baked chicken thigh',
+      '🔄 Swap salmon for baked chicken thigh (fish-free)',
       '🍠 Try brown rice instead of quinoa',
       '🥗 Add a drizzle of tahini dressing',
     ],
@@ -124,6 +131,7 @@ export const mealIdeas: MealIdea[] = [
       'A colourful vegetarian meal that is satisfying and easy to customise. Perfect for a fun dinner or meal-prep filling.',
     prepTime: '20 min',
     tags: ['Dinner', 'Vegetarian', 'Fibre-Rich'],
+    allergens: ['Gluten'],
     ingredients: [
       '1 medium sweet potato, diced',
       '½ can black beans, drained',
@@ -142,6 +150,7 @@ export const mealIdeas: MealIdea[] = [
       '🔄 Swap sweet potato for roasted cauliflower',
       '🥑 Top with sliced avocado for healthy fats',
       '💧 Serve with a glass of water with lime',
+      '🌽 Use 100% corn tortillas for a gluten-free option',
     ],
   },
   {
@@ -152,6 +161,7 @@ export const mealIdeas: MealIdea[] = [
       'A quick, protein-packed snack or light meal. Layer it in a jar for a satisfying grab-and-go option.',
     prepTime: '5 min',
     tags: ['Snack', 'Quick', 'High Protein'],
+    allergens: ['Dairy', 'Nuts'],
     ingredients: [
       '1 cup Greek yogurt (plain)',
       '¼ cup granola (low sugar)',
@@ -166,9 +176,10 @@ export const mealIdeas: MealIdea[] = [
       'Sprinkle seeds on top and drizzle honey if desired.',
     ],
     swapSuggestions: [
-      '🔄 Swap granola for crushed nuts',
+      '🔄 Swap granola for crushed seeds (nut-free)',
       '🍫 Add a few dark chocolate chips for a treat',
       '💧 Pair with green tea for an afternoon pick-me-up',
+      '🥥 Use coconut yogurt for a dairy-free version',
     ],
   },
 ];

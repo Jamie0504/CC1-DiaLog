@@ -1,7 +1,31 @@
+import { useState, useEffect, useMemo } from 'react';
 import MealCard from '../components/MealCard';
+import AllergyFilter from '../components/AllergyFilter';
 import { mealIdeas } from '../data/mealIdeas';
+import { getAllergyPrefs, saveAllergyPrefs } from '../utils/localStorage';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function MealPrepSection() {
+  const { user } = useAuth();
+  const [selectedAllergens, setSelectedAllergens] = useState<string[]>([]);
+
+  useEffect(() => {
+    setSelectedAllergens(getAllergyPrefs());
+  }, [user]);
+
+  const handleAllergyChange = (next: string[]) => {
+    setSelectedAllergens(next);
+    saveAllergyPrefs(next);
+  };
+
+  const filtered = useMemo(
+    () =>
+      mealIdeas.filter(
+        (m) => !m.allergens.some((a) => selectedAllergens.includes(a))
+      ),
+    [selectedAllergens]
+  );
+
   return (
     <section id="meal-prep" className="bg-white">
       <div className="section-container">
@@ -12,11 +36,35 @@ export default function MealPrepSection() {
           and zero pressure. Pick what works for your day.
         </p>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {mealIdeas.map((meal) => (
-            <MealCard key={meal.id} meal={meal} />
-          ))}
-        </div>
+        {/* Allergy filter */}
+        <AllergyFilter
+          selected={selectedAllergens}
+          onChange={handleAllergyChange}
+        />
+
+        {/* Results count */}
+        {selectedAllergens.length > 0 && (
+          <p className="text-sm text-slate-500 mb-4">
+            Showing <strong>{filtered.length}</strong> of {mealIdeas.length} recipes
+          </p>
+        )}
+
+        {/* Meal grid */}
+        {filtered.length > 0 ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filtered.map((meal) => (
+              <MealCard key={meal.id} meal={meal} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <p className="text-5xl mb-4">🔍</p>
+            <p className="text-lg font-medium text-slate-600">No matching recipes</p>
+            <p className="text-sm text-slate-400 mt-1">
+              Try removing some allergy filters to see more meal ideas.
+            </p>
+          </div>
+        )}
 
         {/* Hydration reminder */}
         <div className="mt-8 text-center">

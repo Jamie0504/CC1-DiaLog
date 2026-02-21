@@ -1,3 +1,4 @@
+import { AuthProvider } from './contexts/AuthContext';
 import DemoBanner from './components/DemoBanner';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -9,17 +10,19 @@ import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-stone-50 text-slate-800">
-      <DemoBanner />
-      <Navbar />
-      <main>
-        <Hero />
-        <MealPrepSection />
-        <TimetableSection />
-        <HabitLogSection />
-        <FAQSection />
-      </main>
-      <Footer />
-    </div>
+    <AuthProvider>
+      <div className="min-h-screen bg-stone-50 text-slate-800">
+        <DemoBanner />
+        <Navbar />
+        <main>
+          <Hero />
+          <MealPrepSection />
+          <TimetableSection />
+          <HabitLogSection />
+          <FAQSection />
+        </main>
+        <Footer />
+      </div>
+    </AuthProvider>
   );
 }

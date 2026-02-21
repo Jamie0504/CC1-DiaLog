@@ -1,14 +1,19 @@
 import { HabitLogEntry, WeeklyReflection, TimetableRow } from '../types';
+import { auth } from '../firebase';
 
-const ENTRIES_KEY = 'dialog_habit_entries';
-const REFLECTIONS_KEY = 'dialog_reflections';
-const TIMETABLE_KEY = 'dialog_timetable';
+function uid(): string {
+  return auth.currentUser?.uid ?? 'guest';
+}
+
+function key(base: string): string {
+  return `dialog_${uid()}_${base}`;
+}
 
 /* ── Habit Log Entries ────────────────────────────────── */
 
 export function getEntries(): HabitLogEntry[] {
   try {
-    const raw = localStorage.getItem(ENTRIES_KEY);
+    const raw = localStorage.getItem(key('habit_entries'));
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
@@ -16,7 +21,7 @@ export function getEntries(): HabitLogEntry[] {
 }
 
 export function saveEntries(entries: HabitLogEntry[]): void {
-  localStorage.setItem(ENTRIES_KEY, JSON.stringify(entries));
+  localStorage.setItem(key('habit_entries'), JSON.stringify(entries));
 }
 
 export function addEntry(entry: HabitLogEntry): HabitLogEntry[] {
@@ -36,7 +41,7 @@ export function deleteEntry(id: string): HabitLogEntry[] {
 
 export function getReflections(): WeeklyReflection[] {
   try {
-    const raw = localStorage.getItem(REFLECTIONS_KEY);
+    const raw = localStorage.getItem(key('reflections'));
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
@@ -51,7 +56,7 @@ export function saveReflection(reflection: WeeklyReflection): void {
   } else {
     reflections.unshift(reflection);
   }
-  localStorage.setItem(REFLECTIONS_KEY, JSON.stringify(reflections));
+  localStorage.setItem(key('reflections'), JSON.stringify(reflections));
 }
 
 export function getReflectionByWeek(weekKey: string): string {
@@ -63,7 +68,7 @@ export function getReflectionByWeek(weekKey: string): string {
 
 export function getTimetable(): TimetableRow[] | null {
   try {
-    const raw = localStorage.getItem(TIMETABLE_KEY);
+    const raw = localStorage.getItem(key('timetable'));
     return raw ? JSON.parse(raw) : null;
   } catch {
     return null;
@@ -71,11 +76,26 @@ export function getTimetable(): TimetableRow[] | null {
 }
 
 export function saveTimetable(rows: TimetableRow[]): void {
-  localStorage.setItem(TIMETABLE_KEY, JSON.stringify(rows));
+  localStorage.setItem(key('timetable'), JSON.stringify(rows));
 }
 
 export function clearTimetable(): void {
-  localStorage.removeItem(TIMETABLE_KEY);
+  localStorage.removeItem(key('timetable'));
+}
+
+/* ── Allergy Preferences ──────────────────────────────── */
+
+export function getAllergyPrefs(): string[] {
+  try {
+    const raw = localStorage.getItem(key('allergy_prefs'));
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveAllergyPrefs(allergens: string[]): void {
+  localStorage.setItem(key('allergy_prefs'), JSON.stringify(allergens));
 }
 
 /* ── Image Resize Helper ──────────────────────────────── */

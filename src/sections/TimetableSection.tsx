@@ -1,24 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { TimetableRow } from '../types';
 import { defaultTimetable } from '../data/timetableDefaults';
-
-const STORAGE_KEY = 'dialog_timetable';
-
-function generateId(): string {
-  return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
-}
+import { getTimetable, saveTimetable, generateId } from '../utils/localStorage';
+import { useAuth } from '../contexts/AuthContext';
 
 function loadRows(): TimetableRow[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : defaultTimetable.map((r) => ({ ...r, id: generateId() }));
-  } catch {
-    return defaultTimetable.map((r) => ({ ...r, id: generateId() }));
-  }
-}
-
-function saveRows(rows: TimetableRow[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(rows));
+  const saved = getTimetable();
+  return saved ?? defaultTimetable.map((r) => ({ ...r, id: generateId() }));
 }
 
 /* Inline-editable cell */
@@ -77,11 +65,14 @@ function EditableCell({
 /* Main section */
 
 export default function TimetableSection() {
+  const { user } = useAuth();
   const [rows, setRows] = useState<TimetableRow[]>(loadRows);
+
+  useEffect(() => { setRows(loadRows()); }, [user]);
 
   const persist = useCallback((next: TimetableRow[]) => {
     setRows(next);
-    saveRows(next);
+    saveTimetable(next);
   }, []);
 
   const updateField = (id: string, field: 'time' | 'task', value: string) => {

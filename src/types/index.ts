@@ -5,10 +5,23 @@ export interface MealIdea {
   description: string;
   prepTime: string;
   tags: string[];
+  allergens: string[];
   ingredients: string[];
   steps: string[];
   swapSuggestions: string[];
 }
+
+export const ALL_ALLERGENS = [
+  'Dairy',
+  'Gluten',
+  'Nuts',
+  'Soy',
+  'Fish',
+  'Eggs',
+  'Shellfish',
+] as const;
+
+export type Allergen = (typeof ALL_ALLERGENS)[number];
 
 export interface NutritionData {
   isFood: boolean;

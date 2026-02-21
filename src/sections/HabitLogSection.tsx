@@ -4,15 +4,17 @@ import HabitLogGallery from '../components/HabitLogGallery';
 import WeeklyReflectionComponent from '../components/WeeklyReflection';
 import { HabitLogEntry } from '../types';
 import { getEntries, addEntry, deleteEntry } from '../utils/localStorage';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function HabitLogSection() {
+  const { user } = useAuth();
   const [entries, setEntries] = useState<HabitLogEntry[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [dateFilter, setDateFilter] = useState('');
 
   useEffect(() => {
     setEntries(getEntries());
-  }, []);
+  }, [user]);
 
   const handleAdd = (entry: HabitLogEntry) => {
     const updated = addEntry(entry);

@@ -20,13 +20,24 @@ export default function MealCard({ meal }: Props) {
       </div>
 
       {/* Tags */}
-      <div className="flex flex-wrap gap-1.5 mb-3">
+      <div className="flex flex-wrap gap-1.5 mb-2">
         {meal.tags.map((tag) => (
           <span key={tag} className="badge bg-brand-50 text-brand-700">
             {tag}
           </span>
         ))}
       </div>
+
+      {/* Allergen badges */}
+      {meal.allergens.length > 0 && (
+        <div className="flex flex-wrap gap-1 mb-3">
+          {meal.allergens.map((a) => (
+            <span key={a} className="badge bg-orange-50 text-orange-600 text-[10px]">
+              {a}
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* Description */}
       <p className="text-sm text-slate-600 leading-relaxed mb-4">{meal.description}</p>
