@@ -8,6 +8,15 @@ export default function Hero() {
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-brand-400/20 rounded-full blur-3xl" />
       <div className="absolute bottom-0 -left-20 w-72 h-72 bg-accent-400/10 rounded-full blur-2xl" />
 
+      {/* Disclaimer bar */}
+      <div className="relative bg-amber-50 border-b border-amber-200 px-5 py-3">
+        <p className="text-center text-sm text-amber-800 max-w-3xl mx-auto">
+          <span className="font-bold">⚠️ Disclaimer:</span> This is <strong>not</strong> medical advice.
+          DiaLog is for healthy living support and educational purposes only.
+          It does not provide diagnosis, treatment, or replace professional healthcare.
+        </p>
+      </div>
+
       <div className="relative max-w-6xl mx-auto px-5 sm:px-8 py-24 sm:py-32 lg:py-40 text-center">
         <img src="/logo.jpg" alt="DiaLog" className="mx-auto w-32 h-32 sm:w-40 sm:h-40 rounded-3xl shadow-2xl mb-6 bg-white/10 backdrop-blur-sm" />
 
