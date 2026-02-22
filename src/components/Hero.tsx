@@ -44,6 +44,10 @@ export default function Hero() {
             📸 Habit Log
           </a>
         </div>
+
+        <p className="mt-6 text-sm text-brand-200">
+          Sign in with Google or Email to save your preferences and personalise your experience.
+        </p>
       </div>
     </section>
   );

@@ -19,7 +19,7 @@ export const faqItems: FAQItem[] = [
   {
     question: 'Do I need to create an account?',
     answer:
-      'No account needed. Your habit log entries and reflections are stored locally in your browser using localStorage. When you use AI meal analysis, the meal photo is sent to Google Gemini for processing — no other data leaves your device.',
+      'Yes — you can sign in with Google or create an account using your email and password. Signing in keeps your data (timetable, habit log, allergy preferences) tied to your profile. All data is stored locally in your browser, keyed to your account, so each user gets their own personal experience.',
   },
   {
     question: 'Can I use this on my phone?',
