@@ -9,6 +9,7 @@ export interface MealIdea {
   ingredients: string[];
   steps: string[];
   swapSuggestions: string[];
+  searchKeywords: string;
 }
 
 export const ALL_ALLERGENS = [

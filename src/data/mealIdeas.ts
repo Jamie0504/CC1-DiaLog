@@ -30,6 +30,7 @@ export const mealIdeas: MealIdea[] = [
       '💧 Pair with a glass of water to start hydrated',
       '🥛 Use oat milk & coconut yogurt to make it dairy-free',
     ],
+    searchKeywords: 'rolled oats Greek yogurt mixed berries chia seeds honey',
   },
   {
     id: 'chicken-stir-fry',
@@ -61,6 +62,7 @@ export const mealIdeas: MealIdea[] = [
       '🌶️ Toss in chilli flakes if you like it spicy',
       '🫘 Use coconut aminos instead of soy sauce to make it soy-free',
     ],
+    searchKeywords: 'chicken breast broccoli bell pepper soy sauce sesame oil rice',
   },
   {
     id: 'mediterranean-wrap',
@@ -92,6 +94,7 @@ export const mealIdeas: MealIdea[] = [
       '💧 Have a cup of herbal tea alongside',
       '🥬 Use a large lettuce leaf instead of tortilla (gluten-free)',
     ],
+    searchKeywords: 'whole wheat tortilla hummus cucumber cherry tomatoes feta cheese lemon',
   },
   {
     id: 'salmon-quinoa-bowl',
@@ -122,6 +125,7 @@ export const mealIdeas: MealIdea[] = [
       '🍠 Try brown rice instead of quinoa',
       '🥗 Add a drizzle of tahini dressing',
     ],
+    searchKeywords: 'salmon fillet quinoa sweet potato spinach olive oil lemon',
   },
   {
     id: 'sweet-potato-tacos',
@@ -152,6 +156,7 @@ export const mealIdeas: MealIdea[] = [
       '💧 Serve with a glass of water with lime',
       '🌽 Use 100% corn tortillas for a gluten-free option',
     ],
+    searchKeywords: 'sweet potato black beans cumin paprika corn tortillas salsa lime',
   },
   {
     id: 'yogurt-parfait',
@@ -181,5 +186,6 @@ export const mealIdeas: MealIdea[] = [
       '💧 Pair with green tea for an afternoon pick-me-up',
       '🥥 Use coconut yogurt for a dairy-free version',
     ],
+    searchKeywords: 'Greek yogurt granola berries kiwi pumpkin seeds honey',
   },
 ];
