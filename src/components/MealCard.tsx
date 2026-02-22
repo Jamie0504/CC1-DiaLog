@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import { MealIdea } from '../types';
 
 const groceryPlatforms = [
-  { name: 'FairPrice', icon: '🛒', baseUrl: 'https://www.fairprice.com.sg/search?query=' },
-  { name: 'RedMart', icon: '🛍️', baseUrl: 'https://redmart.lazada.sg/shop/?searchQuery=' },
-  { name: 'Amazon Fresh', icon: '📦', baseUrl: 'https://www.amazon.sg/s?k=' },
+  { name: 'FairPrice', icon: '🛒', url: 'https://www.fairprice.com.sg/' },
+  { name: 'RedMart', icon: '🛍️', url: 'https://redmart.lazada.sg/' },
+  { name: 'Amazon Fresh', icon: '📦', url: 'https://www.amazon.sg/fresh' },
 ];
 
 interface Props {
@@ -26,8 +26,6 @@ export default function MealCard({ meal }: Props) {
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
   }, [showBuy]);
-
-  const encodedKeywords = encodeURIComponent(meal.searchKeywords);
 
   return (
     <div className="card flex flex-col">
@@ -60,7 +58,7 @@ export default function MealCard({ meal }: Props) {
               {groceryPlatforms.map((p) => (
                 <a
                   key={p.name}
-                  href={p.baseUrl + encodedKeywords}
+                  href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 px-3 py-2 text-sm text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors"
